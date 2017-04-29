@@ -86,7 +86,6 @@ var removeOld = function() {
 			$todoContainer.load(config.listUrl);
 		});
 	};
-	func();
 	setInterval(func, 10000);
 };
 
