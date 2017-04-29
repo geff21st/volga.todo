@@ -30,7 +30,7 @@ class Main
 		session_id($this->sessID);
 	}
 
-	public function getUser()
+	protected function getUser()
 	{
 		$pdo = DB::getInstance()->getPDO();
 
@@ -43,5 +43,15 @@ class Main
 			$pdo->query("INSERT INTO `users` (`session_id`) VALUES ('{$this->sessID}')");
 			$this->userID = $pdo->lastInsertId();
 		}
+	}
+
+	public function getUserID()
+	{
+		return $this->userID;
+	}
+
+	public static function printJsonResult($data = [])
+	{
+		exit(json_encode($data));
 	}
 }

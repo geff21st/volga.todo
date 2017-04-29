@@ -2,4 +2,11 @@
 
 require_once __DIR__ . '/lib/autoload.php';
 
-Geffest\Todo\Main::getInstance();
+// auth test
+echo Geffest\Todo\Main::getInstance()->getUserID();
+
+// $task = new Geffest\Todo\Task;
+
+// var_export($task->add('qwerty'));
+
+
