@@ -2,13 +2,18 @@
 	box-sizing: border-box;
 }
 
+button:focus,
 input:focus {
 	outline: none;
-	box-shadow: 0 0 2px rgba(0, 0, 0, 0.5)
+	box-shadow: 0 0 2px rgba(0, 126, 255, 0.85);
+}
+
+.disabled button:focus {
+	box-shadow: none;
 }
 
 html, body {
-	padding: 0; 
+	padding: 0;
 	margin: 0;
 	background: #eee;
 }
@@ -53,9 +58,12 @@ html, body {
     border-radius: 2px;
 }
 
-span.caption {
+.task .caption {
     width: 77%;
     display: inline-block;
+    border: 1px solid #ccc;
+    padding: 0 10px;
+    height: 30px;
 }
 
 button.btn.remove {
@@ -72,4 +80,21 @@ button.btn.save {
     border-radius: 20px;
     height: 30px;
     color: #003f73;
+}
+
+.restore {
+	padding: 40px 0 0 0;
+}
+
+.restore input {
+	height: 30px;
+	width: 400px;
+}
+
+.task.disabled {
+	opacity: 0.5;
+}
+
+.disabled .caption {
+	text-decoration: line-through;
 }

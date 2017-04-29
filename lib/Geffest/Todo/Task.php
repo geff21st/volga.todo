@@ -24,26 +24,40 @@ class Task
 		return $stmt->execute();
 	}
 
-	public function edit()
+	public function finish($id)
 	{
-		$pdo = DB::getInstance()->getPDO();
+		if (empty($id)) return false;
 
+		$stmt = $this->pdo->prepare("UPDATE `tasks` SET `finished` = 1 WHERE `id` = {$id} AND `user_id` = {$this->userID}");
+
+		return $stmt->execute();
 	}
 
-	public function remove()
+	public function edit($id, $name)
 	{
-		$pdo = DB::getInstance()->getPDO();
+		if (empty($id) || empty($name)) return false;
+
+		$stmt = $this->pdo->prepare("UPDATE `tasks` SET `name` = :name WHERE `id` = {$id} AND `user_id` = {$this->userID}");
+
+		$stmt->bindParam(':name', $name);
+
+		return $stmt->execute();
+	}
+
+	public function remove($id)
+	{
+		$this->pdo->query("DELETE FROM `tasks` WHERE `id` = {$id} AND `user_id` = {$this->userID}");
 	}
 
 	public function get()
 	{
 		$stmt = $this->pdo->query("SELECT * FROM `tasks` WHERE `user_id` = '{$this->userID}'");
-
-		echo "<pre>";
+		$arTasks = [];
 
 		while ($row = $stmt->fetch()) {
-			print_r($row);
+			$arTasks[] = $row;
 		}
 
+		return $arTasks;
 	}
 }

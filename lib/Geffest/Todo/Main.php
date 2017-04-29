@@ -50,6 +50,11 @@ class Main
 		return $this->userID;
 	}
 
+	public function getSessID()
+	{
+		return $this->sessID;
+	}
+
 	public static function printJsonResult($data = [])
 	{
 		exit(json_encode($data));
