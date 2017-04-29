@@ -29,6 +29,12 @@ $arTasks = $task->get();
 			<button type="button" class="btn remove">
 				Удалить
 			</button>
+			<div style="text-align: right; font-size: 12px;">
+				<br><em>Дата создания: <?= $task['added_at'] ?></em>
+				<?php if (!empty($task['finished_at'])): ?>
+					<br><em>Дата завершения: <?= $task['finished_at'] ?></em>
+				<?php endif; ?>
+			</div>
 		</div>
 
 	<?php endforeach; ?>

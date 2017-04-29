@@ -2,7 +2,8 @@ window.$doc = window.$doc || $(document);
 
 window.config = {
 	editUrl: './ajax/task.edit.php',
-	listUrl: './ajax/tasks.php'
+	listUrl: './ajax/tasks.php',
+	removeOldUrl: './ajax/remove.old.php',
 };
 
 var loadTasks = function() {
@@ -11,7 +12,7 @@ var loadTasks = function() {
 
 var addTask = function() {
 	var FORM = 'form.add-form';
-	var INPUT = 'input.task-name';
+	var INPUT = 'input[name=name]';
 	$doc.on('submit', FORM, function(e) {
 		e.preventDefault();
 		var $this = $(this);
@@ -19,6 +20,7 @@ var addTask = function() {
 		$.post(config.editUrl, data, function() {
 			$todoContainer.load(config.listUrl);
 		});
+		$(INPUT).val('');
 	});
 };
 
@@ -45,7 +47,7 @@ var removeTask = function() {
 	$doc.on('click', DEL_BTN, function(e) {
 		e.preventDefault();
 
-		if (!window.confirm()) return;
+		if (!window.confirm('Вы действительно хотите удалить эту задачу?')) return;
 		var $this = $(this);
 		var $task = $this.closest('.task');
 		var data = {
@@ -77,10 +79,22 @@ var finishTask = function() {
 	});
 };
 
+// Каждые десять минут запускается удаление старых задач
+var removeOld = function() {
+	var func = function() {
+		$.post(config.removeOldUrl, function() {
+			$todoContainer.load(config.listUrl);
+		});
+	};
+	func();
+	setInterval(func, 10000);
+};
+
 $(function(){
 	window.$todoContainer = $('.todo-load');
 	addTask();
 	updateTask();
 	removeTask();
 	finishTask();
-})
+	removeOld();
+});
