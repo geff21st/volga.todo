@@ -2,9 +2,74 @@
 	box-sizing: border-box;
 }
 
+input:focus {
+	outline: none;
+	box-shadow: 0 0 2px rgba(0, 0, 0, 0.5)
+}
+
 html, body {
 	padding: 0; 
 	margin: 0;
 	background: #eee;
 }
 
+.form {
+	padding: 50px 0;
+	border-bottom: 1px solid #000;
+}
+
+.wrapper {
+	width: 800px;
+	margin: auto;
+}
+
+.form input {
+	height: 40px;
+}
+
+.todo {
+	padding: 50px 0;
+}
+
+.form input[type="text"] {
+    width: 700px;
+    border-radius: 4px 0 0 4px;
+    border: 1px solid #ccc;
+    border-right: 0;
+    padding: 0 20px;
+}
+
+.form input[type="submit"] {
+    width: 100px;
+    float: right;
+    border: 1px solid #ccc;
+    border-radius: 0 4px 4px 0;
+}
+
+.task {
+    padding: 10px;
+    background: #fff;
+    margin-bottom: 10px;
+    border-radius: 2px;
+}
+
+span.caption {
+    width: 77%;
+    display: inline-block;
+}
+
+button.btn.remove {
+    border: 1px solid #911;
+    background: #ff8c8c;
+    border-radius: 20px;
+    height: 30px;
+    color: #911;
+}
+
+button.btn.save {
+    border: 1px solid #003f73;
+    background: #65c2fb;
+    border-radius: 20px;
+    height: 30px;
+    color: #003f73;
+}
